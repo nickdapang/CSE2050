@@ -19,23 +19,23 @@ def weather_analyze(file_path):
 
     high_temp = find_highest_temperature(list)
 
-    dict1['date'] = high_temp[1]
-    dict1['temperature'] = high_temp[0]
+    dict1['date'] = high_temp[0]
+    dict1['temperature'] = high_temp[1]
 
 
     dict['highest_temperature'] = (dict1)
 
     low_temp = find_lowest_temperature(list)
      
-    dict2['date'] = low_temp[1]
-    dict2['temperature'] = low_temp[0]
+    dict2['date'] = low_temp[0]
+    dict2['temperature'] = low_temp[1]
 
     dict['lowest_temperature'] = (dict2)
 
     most_rainfall = find_day_with_most_rainfall(list)
 
-    dict3['date'] = most_rainfall[1]
-    dict3['rainfall'] = most_rainfall[0]
+    dict3['date'] = most_rainfall[0]
+    dict3['rainfall'] = most_rainfall[1]
     dict['most_rainfall'] = (dict3)
 
     return dict
