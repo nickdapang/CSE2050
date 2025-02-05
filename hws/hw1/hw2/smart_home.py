@@ -137,7 +137,7 @@ class Thermostat(SmartDevice):
         Returns bool — True if the temperature is within the valid range (e.g., between 55°F
         and 80°F); False otherwise.
         '''
-        if temp= >= 55.0 and temp <= 80:
+        if temp >= 55.0 and temp <= 80:
             return True
         else:
             return False
