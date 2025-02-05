@@ -115,7 +115,8 @@ class Thermostat(SmartDevice):
         Returns: 
         None 
         '''
-        self.temperature = temp
+        if self._check_temperature_limits(temp) == True:
+            self.temperature = temp
     
     def __str__(self):
         '''
@@ -135,7 +136,7 @@ class Thermostat(SmartDevice):
         Parameters: temp (float)
         
         Returns bool — True if the temperature is within the valid range (e.g., between 55°F
-        and 80°F); False otherwise.
+        andt 80°F); False otherwise.
         '''
         if temp >= 55.0 and temp <= 80:
             return True
@@ -161,18 +162,18 @@ class Speaker(SmartDevice):
     def increase_volume(self):
         '''
         Inputs & Returns: None.
-        Description: Increases the volume by 1, with a maximum vol
+        Description: Increases the volume by 1, with a maximum vol of 10
         '''
-        if volume < 10:
-            volume = volume + 1
+        if self.volume < 10:
+            self.volume = self.volume + 1
     
     def decrease_volume(self):
         '''
         Inputs & Returns: None.
         Description: Decreases the volume by 1, with a minimum volume of 1.
         '''
-        if volume > 1:
-            volume = volume - 1
+        if self.volume > 1:
+            self.volume = self.volume - 1
 
     def __str__(self):
         '''
@@ -196,12 +197,13 @@ class SmartHome:
         '''
         Inputs: other (SmartDevice) — An instance of a SmartDevice
 
-        Returns: None.
+        Returns: self
         Description: Overloads the + operator to allow devices
         to be added to the SmartHome instance.
         This method appends the device to the devices list in the SmartHome.
         '''
         self.devices.append(other)
+        return self
     
     def turn_off_all(self):
         '''
