@@ -12,8 +12,8 @@ def read_weather_data(file_path: str):
 def calculate_average_temperature(weather_data):
     result = 0.0
     j = 0
-    for i in weather_data:
-        result += (float)(i[1])
+    for i2 in weather_data:
+        result += (float)(i2[1])
         j += 1
     average= result / j
     return average

@@ -1,4 +1,0 @@
-a = print('9')
-b = print('3')
-print(a)
-print(a is b)
