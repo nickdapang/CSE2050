@@ -15,7 +15,7 @@ class Node:
         returns: the string representation of self.item
         '''
         
-        return str({Node(self.item)})
+        return f"Node({self.item})"
 
 class LinkedList:
 
@@ -91,17 +91,24 @@ class LinkedList:
 
     def remove_first(self):
         '''
-        removes last node from LinkedList and returns its item
+        removes first node from LinkedList and returns its item
         raises a RuntimeError if LinkedList is empty when called
         '''
-        old = self.head.item
-        try:
-            self._head = self._head.link
+        if self._head == None:
+            raise RuntimeError("Th elist is empty")
         
-        except:
-            raise RuntimeError
+        old = self._head
+    
+        self._head = self._head.link
+
+        if self._head == None:
+            self._tail = None
 
         self._len -= 1
+        
+        if old != None:
+            return old.item
+        
         return old
     
     def remove_last(self):
@@ -111,27 +118,31 @@ class LinkedList:
         Returns: the tail you removed
         '''
        
-        try:
-            node = self._head
-            prev = None
-            old_tail = self._tail.item
-            while node != self._tail:
-                prev = node
-                node = node.link
-
-            if prev == None:
-                self._head = self._tail = None
-            else:
-                prev.link = None
-                self._tail = prev
-
-            self._len -= 1            
-
-            return old_tail
+        if self._head == None:
+            raise RuntimeError("Th elist is empty")
         
-        except:
-            raise RuntimeError 
+        node = self._head
+        prev = None
+        old = self._tail
 
+        while node != self._tail:
+            prev = node
+            node = node.link
+
+        if prev == None:
+            self._head = self._tail = None
+        else:
+            prev.link = None
+            self._tail = prev
+
+        self._len -= 1            
+
+        if old != None:
+            return old.item
+        
+        return old
+        
+        
     def __len__(self):
         '''
         returns length of the linked list
