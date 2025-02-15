@@ -1,6 +1,6 @@
 
 class Node:
-    def __init__(self, item, link):
+    def __init__(self, item, link = None):
         '''
         Parameters: item and link
         Description: Initializes item and link
@@ -19,7 +19,7 @@ class Node:
 
 class LinkedList:
 
-    def __init__(self, items):
+    def __init__(self, items = None):
         '''
         Desciption:
         Initializes the length
@@ -33,8 +33,10 @@ class LinkedList:
         self._len = 0
         self._head = None
         self._tail = None
-        for item in items:
-            self.add_last(item)
+        
+        if items != None:
+            for item in items:
+                self.add_last(item)
     
     def get_head(self):
         '''
