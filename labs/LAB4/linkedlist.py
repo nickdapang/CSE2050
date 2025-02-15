@@ -15,7 +15,7 @@ class Node:
         returns: the string representation of self.item
         '''
         
-        return str({self.item})
+        return str({Node(self.item)})
 
 class LinkedList:
 
@@ -44,7 +44,7 @@ class LinkedList:
         Returns: self._head, the head of the linked list
         '''
         if self._len >= 1:
-            return self._head 
+            return self._head.item
         else:
             return None
     def get_tail(self):
@@ -55,7 +55,7 @@ class LinkedList:
         if self._tail is None:
             return None
         else:
-            return self._tail
+            return self._tail.item
 
     def add_first(self, item):
         '''
@@ -94,7 +94,7 @@ class LinkedList:
         removes last node from LinkedList and returns its item
         raises a RuntimeError if LinkedList is empty when called
         '''
-        old = self.head
+        old = self.head.item
         try:
             self._head = self._head.link
         
@@ -103,17 +103,18 @@ class LinkedList:
 
         self._len -= 1
         return old
+    
     def remove_last(self):
         '''
         removes last node from LinkedList and returns its item
         raises a RuntimeError if LinkedList is empty when called
-
+        Returns: the tail you removed
         '''
        
         try:
             node = self._head
             prev = None
-            old_tail = self._tail
+            old_tail = self._tail.item
             while node != self._tail:
                 prev = node
                 node = node.link
@@ -132,5 +133,8 @@ class LinkedList:
             raise RuntimeError 
 
     def __len__(self):
+        '''
+        returns length of the linked list
+        '''
         return self._len
 
