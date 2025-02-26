@@ -68,9 +68,7 @@ class LinkedList:
         if self._tail is None:
             self._head = node
             self._tail = node
-
         else:    
-            
             node.link = self._head
             self._head = node
 
@@ -94,23 +92,24 @@ class LinkedList:
         removes first node from LinkedList and returns its item
         raises a RuntimeError if LinkedList is empty when called
         '''
-        if self._head == None:
+        if self._head is None:
             raise RuntimeError("Th elist is empty")
         
+        if self._head is None:
+            return None
+    
         old = self._head
     
         self._head = self._head.link
 
-        if self._head == None:
+        if self._head is None:
             self._tail = None
 
         self._len -= 1
         
-        if old != None:
-            return old.item
+        return old.item
         
-        return old
-    
+        
     def remove_last(self):
         '''
         removes last node from LinkedList and returns its item
@@ -118,8 +117,11 @@ class LinkedList:
         Returns: the tail you removed
         '''
        
-        if self._head == None:
+        if self._head is None:
             raise RuntimeError("Th elist is empty")
+        
+        if self._head is None:
+            return None
         
         node = self._head
         prev = None
@@ -129,7 +131,7 @@ class LinkedList:
             prev = node
             node = node.link
 
-        if prev == None:
+        if prev is None:
             self._head = self._tail = None
         else:
             prev.link = None
@@ -137,10 +139,7 @@ class LinkedList:
 
         self._len -= 1            
 
-        if old != None:
-            return old.item
-        
-        return old
+        return old.item
         
         
     def __len__(self):
