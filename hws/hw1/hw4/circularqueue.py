@@ -92,6 +92,23 @@ class CircularQueue:
         return self.remove_process(process)
     
     
+    def run(self, n_cycles):
+        """Runs circular queue for n_cycles, giving each process 1 cycle at a time"""
+        n_remaining = n_cycles
+        return_strings = []   # Using an intermediate list since appending to a string is O(n)
 
+        while n_remaining:
+            self._head.cycles -= 1
+
+            if self._head.cycles == 0:
+                return_strings.append(f"{self._head.pid} finished after {n_cycles-n_remaining+1} computational cycles.")
+                self.remove_process(self._head)
+
+            else:
+                self._head = self._head.link
+            
+            n_remaining -= 1
+
+        return '\n'.join(return_strings)
         
     
